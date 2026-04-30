@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nexis Console</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <button class="icon-button" id="homeButton" title="返回仪表盘" aria-label="返回仪表盘">
+          <span>⌂</span>
+        </button>
+        <div>
+          <div class="brand">Nexis Console</div>
+          <div class="muted small">TCP 双向监控控制台</div>
+        </div>
+        <div class="topbar__actions">
+          <button class="plain-button" id="langButton">English</button>
+          <button class="icon-button" id="refreshButton" title="刷新数据" aria-label="刷新数据">↻</button>
+          <button class="icon-button" id="themeButton" title="切换主题" aria-label="切换主题">◐</button>
+        </div>
+      </div>
+    </header>
+    <main id="app" class="shell"></main>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
+

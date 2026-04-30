@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: Nexis Console API
+  version: 0.1.0
+servers:
+  - url: http://127.0.0.1:47141/api/v1
+paths:
+  /nodes:
+    get:
+      summary: List Nexis Nodes
+      responses:
+        "200":
+          description: Node list
+  /nodes/{nodeId}:
+    get:
+      summary: Get Nexis Node detail
+      parameters:
+        - name: nodeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Node detail
+  /nodes/{nodeId}/resource-series:
+    get:
+      summary: Query Node resource metric series
+      parameters:
+        - name: nodeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: range
+          in: query
+          schema:
+            type: string
+            enum: [1h, 6h, 24h, 7d]
+        - name: metric
+          in: query
+          schema:
+            type: string
+            enum: [cpu, memory, network, disk]
+      responses:
+        "200":
+          description: Resource series
+  /nodes/{nodeId}/connectivity:
+    get:
+      summary: Query Node-to-Probe connectivity summary
+      parameters:
+        - name: nodeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: range
+          in: query
+          schema:
+            type: string
+            enum: [1h, 6h, 24h, 7d]
+      responses:
+        "200":
+          description: Connectivity summary
+  /nodes/{nodeId}/probes/{probeId}/series:
+    get:
+      summary: Query a Node/Probe TCP metric series
+      parameters:
+        - name: nodeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: probeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: range
+          in: query
+          schema:
+            type: string
+            enum: [1h, 6h, 24h, 7d]
+        - name: metric
+          in: query
+          schema:
+            type: string
+            enum: [connect_latency, app_rtt, jitter, success_rate, timeout_rate, probe_loss_rate]
+        - name: direction
+          in: query
+          schema:
+            type: string
+            enum: [forward, reverse]
+      responses:
+        "200":
+          description: TCP series
+  /probes:
+    get:
+      summary: List Nexis Probes
+      responses:
+        "200":
+          description: Probe list
+

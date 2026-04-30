@@ -1,0 +1,17 @@
+FROM golang:1.24-alpine AS build
+
+ARG TARGET=./agents/nexis-node
+ARG BIN=nexis-node
+
+WORKDIR /src
+COPY go.mod ./
+COPY agents ./agents
+COPY packages ./packages
+RUN go build -o /out/${BIN} ${TARGET}
+
+FROM alpine:3.20
+
+ARG BIN=nexis-node
+ENV NEXIS_AGENT_BIN=${BIN}
+COPY --from=build /out/${BIN} /usr/local/bin/${BIN}
+ENTRYPOINT ["/bin/sh", "-c", "exec /usr/local/bin/${NEXIS_AGENT_BIN} \"$@\"", "--"]

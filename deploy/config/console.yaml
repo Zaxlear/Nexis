@@ -1,0 +1,25 @@
+console:
+  web_port: 47131
+  api_port: 47141
+  control_port: 47151
+  metrics_port: 47191
+  reverse_port_start: 47300
+  reverse_port_end: 47999
+  public_host: 127.0.0.1
+  web_dir: apps/web
+  seed_demo: true
+
+database:
+  dsn: postgres://nexis:nexis@127.0.0.1:55432/nexis?sslmode=disable
+  auto_migrate: true
+
+scheduler:
+  node_resource_report_interval_sec: 15
+  forward_probe_interval_sec: 30
+  reverse_probe_interval_sec: 30
+
+agent:
+  heartbeat_interval_sec: 15
+  heartbeat_timeout_sec: 45
+  lease_ttl_sec: 90
+  tokens: node-local-oracle=nexis-local-token,probe-local-guangdong-ct-v4=nexis-local-token

@@ -1,0 +1,33 @@
+services:
+  console:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.console
+    container_name: nexis-console
+    depends_on:
+      - postgres
+    environment:
+      NEXIS_PUBLIC_HOST: 127.0.0.1
+      NEXIS_DATABASE_DSN: postgres://nexis:nexis@postgres:5432/nexis?sslmode=disable
+    ports:
+      - "47131:47131"
+      - "47141:47141"
+      - "47151:47151"
+      - "47191:47191"
+      - "47300-47320:47300-47320"
+
+  postgres:
+    image: postgres:16
+    container_name: nexis-postgres
+    environment:
+      POSTGRES_DB: nexis
+      POSTGRES_USER: nexis
+      POSTGRES_PASSWORD: nexis
+    ports:
+      - "55432:5432"
+    volumes:
+      - nexis-postgres:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  nexis-postgres:

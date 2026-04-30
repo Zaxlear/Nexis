@@ -1,0 +1,25 @@
+agent:
+  id: node-local-oracle
+  component: nexis-node
+  name: Oracle
+  token: nexis-local-token
+  public_ipv4: 127.0.0.1
+  public_ipv6: ""
+  region: local
+
+console:
+  control_url: ws://127.0.0.1:47151/ws
+
+listener:
+  host: 0.0.0.0
+  port: 47211
+
+resource:
+  report_interval_sec: 15
+
+probe:
+  connect_timeout_ms: 3000
+  read_timeout_ms: 3000
+  write_timeout_ms: 3000
+  probe_count: 5
+

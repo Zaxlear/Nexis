@@ -1,0 +1,18 @@
+[Unit]
+Description=Nexis Console
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/nexis
+Environment=NEXIS_WEB_ADDR=:47131
+Environment=NEXIS_API_ADDR=:47141
+Environment=NEXIS_CONTROL_ADDR=:47151
+Environment=NEXIS_PUBLIC_HOST=127.0.0.1
+ExecStart=/opt/nexis/bin/nexis-console -config /etc/nexis/console.yaml
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

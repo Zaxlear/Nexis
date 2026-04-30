@@ -1,0 +1,18 @@
+[Unit]
+Description=Nexis Node Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=NEXIS_CONTROL_URL=ws://127.0.0.1:47151/ws
+Environment=NEXIS_NODE_ID=node-oracle
+Environment=NEXIS_NODE_NAME=Oracle
+Environment=NEXIS_NODE_TOKEN=replace-with-token
+Environment=NEXIS_NODE_PUBLIC_IPV4=127.0.0.1
+ExecStart=/opt/nexis/bin/nexis-node -config /etc/nexis/nexis-node.yaml
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

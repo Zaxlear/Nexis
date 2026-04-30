@@ -1,0 +1,24 @@
+agent:
+  id: probe-local-guangdong-ct-v4
+  component: nexis-probe
+  name: 广东电信IPv4
+  token: nexis-local-token
+  region: 广东
+  isp: 电信
+  network_stack: IPv4
+
+console:
+  control_url: ws://127.0.0.1:47151/ws
+
+probe:
+  connect_timeout_ms: 3000
+  read_timeout_ms: 3000
+  write_timeout_ms: 3000
+  probe_count: 5
+  concurrency: 4
+
+reconnect:
+  min_backoff_sec: 1
+  max_backoff_sec: 30
+  jitter_ratio: 0.2
+

@@ -1,0 +1,17 @@
+[Unit]
+Description=Nexis Probe Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=NEXIS_CONTROL_URL=ws://127.0.0.1:47151/ws
+Environment=NEXIS_PROBE_ID=probe-gd-ct-v4
+Environment=NEXIS_PROBE_NAME=广东电信IPv4
+Environment=NEXIS_PROBE_TOKEN=replace-with-token
+ExecStart=/opt/nexis/bin/nexis-probe -config /etc/nexis/nexis-probe.yaml
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
